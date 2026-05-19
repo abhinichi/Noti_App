@@ -1,6 +1,6 @@
 package com.example.notey.roomdb
 
-import androidx.lifecycle.LiveData
+import kotlinx.coroutines.flow.Flow
 import androidx.room3.Dao
 import androidx.room3.Insert
 import androidx.room3.Query
@@ -11,5 +11,5 @@ interface NoteDao {
 suspend fun insert(note: Note)
 
 @Query("SELECT * FROM notes_table")
-fun getAllNotes() : LiveData<List<Note>>
+fun getAllNotes() : Flow<List<Note>>
 }

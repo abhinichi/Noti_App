@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.collectAsState
 import androidx.core.graphics.toColorInt
 import androidx.lifecycle.ViewModelProvider
 import com.example.notey.repository.NotesRepository
@@ -33,16 +33,16 @@ class MainActivity : ComponentActivity() {
             viewModelFactory
         )[NoteViewModel::class.java]
 
+        val note1 = Note(
+            id = 0,
+            title = "Dummy title",
+            description = "This is a dummy description",
+            color = "#f59597".toColorInt()
+        )
+        noteViewModel.insert(note1)
         setContent {
             NoteyTheme {
-                val note1 = Note(
-                    id = 0,
-                    title = "Dummy title",
-                    description = "This is a dummy description",
-                    color = "#f59597".toColorInt()
-                )
-
-                val notes by noteViewModel.allNotes.observeAsState(emptyList())
+                val notes by noteViewModel.allNotes.collectAsState(emptyList())
                 DisplayNotesList(notes = notes)
             }
         }
