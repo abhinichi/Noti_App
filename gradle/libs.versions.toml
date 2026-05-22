@@ -11,6 +11,7 @@ composeBom = "2024.09.00"
 ksp = "2.2.10-2.0.2"
 room = "3.0.0-alpha04"
 runtimeLivedata = "1.11.1"
+identityJvm = "202411.1"
 
 
 [libraries]
@@ -33,6 +34,7 @@ androidx-room3-runtime = { group = "androidx.room3", name = "room3-runtime", ver
 androidx-room3-compiler = { group = "androidx.room3", name = "room3-compiler", version.ref = "room" }
 androidx-room3-sqlite-wrapper = { group = "androidx.room3", name = "room3-sqlite-wrapper", version.ref = "room" }
 androidx-compose-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
+identity-jvm = { group = "com.android.identity", name = "identity-jvm", version.ref = "identityJvm" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

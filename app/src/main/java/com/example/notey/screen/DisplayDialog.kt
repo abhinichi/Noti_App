@@ -1,7 +1,4 @@
 package com.example.notey.screen
-
-import android.app.AlertDialog
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -20,7 +17,6 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.unit.dp
 import com.example.notey.roomdb.Note
 import com.example.notey.viewModel.NoteViewModel
-import java.nio.file.WatchEvent
 
 @Composable
 fun DisplayDialog(viewModel: NoteViewModel, showDialog: Boolean, onDismiss: () -> Unit) {
@@ -50,6 +46,7 @@ fun DisplayDialog(viewModel: NoteViewModel, showDialog: Boolean, onDismiss: () -
                 Spacer(
                     modifier = Modifier.height(14.dp)
                 )
+                MyColorPicker(selectedColor = selectedColor, onColorSelected = {selectedColor = it})
             }
         },
         confirmButton = {
@@ -60,7 +57,10 @@ fun DisplayDialog(viewModel: NoteViewModel, showDialog: Boolean, onDismiss: () -
                         description = description,
                         color = selectedColor.toArgb()
                     )
-                    viewModel.insert(newNote)
+                    if(title.isNotEmpty() && description.isNotEmpty())
+                    {viewModel.insert(newNote)}
+
+                onDismiss()
             }) { Text(text = "Save Note") }
         },
         dismissButton = {
